@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="\node_modules\bootstrap\dist\css\bootstrap.min.css">
+    <title>uploads</title>
+    <style >
+      img{
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-4 ">
+          <h1 class="text-center display-4 my-5">UPLOAD YOUR FILES HERE</h1>
+          <form action="/upload" method="POST" enctype="multipart/form-data">
+          <div class="custom-file mb-2">
+            <input type="file" name="file" id="file " class="custom-file-input"> 
+            <label for="file" class="custom-file-label">CHOOSE FILE</label>
+          </div>
+          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+          
+          </form>
+          <hr>
+          <% if(files){%>
+          <%files.forEach(function(file){%>
+          <div class="card card-body mb-3 ">
+            <%if(file.contentType==='image/jpeg' || file.contentType==="image/png"){%>
+              <img src="images/<%=file.filename%>" alt="">
+          <% }else{ %> 
+            <%= file.filename %>
+              <% }%>
+          </div>
+            <% })%>
+        <%} else{ %> 
+            <p>No files to show</p>
+          <% }%>       
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
